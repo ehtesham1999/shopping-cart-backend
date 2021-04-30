@@ -37,7 +37,7 @@ def items():
 
 
 @app.route('/item/<id>')
-def items(id):
+def item(id):
     item = mongo.db.cart.find_one({'_id': ObjectId(id)})
     resp = dumps(item)
     return resp
