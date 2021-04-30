@@ -13,7 +13,7 @@ mongo = cluster
 
 
 @app.route('/add', methods=['POST'])
-def add_item():
+def add_user():
     _json = request.json
     _item_name = _json['item_name']
     _price = _json['price']
@@ -37,14 +37,14 @@ def items():
 
 
 @app.route('/item/<id>')
-def items(id):
+def users(id):
     item = mongo.db.cart.find_one({'_id': ObjectId(id)})
     resp = dumps(item)
     return resp
 
 
 @app.route('/update/<id>', methods=['PUT'])
-def update_item(id):
+def update_user(id):
     _json = request.json
     # _id = _json['_id']
     _item_name = _json['item_name']
@@ -72,7 +72,7 @@ def update_item(id):
 
 
 @app.route('/delete/<id>', methods=['DELETE'])
-def delete_item(id):
+def delete_user(id):
     mongo.db.cart.delete_one({'_id': ObjectId(id)})
     resp = jsonify('Item deleted successfully!')
     resp.status_code = 200
